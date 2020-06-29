@@ -1,0 +1,43 @@
+version: '3'
+services:
+  jest:
+    build: .
+    command: npm run test
+    volumes:
+      - .:/usr/app/
+      - /usr/app/node_modules
+  build:
+    build: .
+    command: npm run build 
+    volumes:
+      - .:/usr/app/
+      - /usr/app/node_modules
+  serve:
+    build: .
+    command: npm run serve
+    depends_on:
+      - build
+    ports:
+      - "80:9000"
+      - "9000:9000"
+    volumes:
+      - .:/usr/app/
+      - /usr/app/node_modules
+    networks: 
+      - backend
+  server:
+    build: .
+    command: node server.js
+    depends_on:
+      - build
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/usr/app/
+      - /usr/app/node_modules
+    networks: 
+      - backend
+      
+networks:
+    backend:
+        driver: bridge

@@ -1,14 +1,11 @@
-FROM node:13.8.0 as front
+FROM node:12
 
-WORKDIR /app
-COPY ./ /app/
+WORKDIR /usr/app
 
-COPY ./default.conf /etc/nginx/conf.d/default.conf
+EXPOSE 80 8080 9000
 
-RUN yarn install
-RUN yarn run build
+COPY package.json .
 
-FROM nginx:1.17.8-alpine
-RUN rm -rf /usr/share/nginx/html
-COPY --from=front /app/public/ /usr/share/nginx/html
-COPY ./default.conf /etc/nginx/conf.d/default.conf
+RUN npm install --quiet
+
+COPY . . 
