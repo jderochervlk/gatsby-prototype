@@ -1,23 +1,30 @@
+import { Container } from '@material-ui/core'
 import { Link } from "gatsby"
 import React from "react"
 
+import Banner from '../components/Banner'
+import ContentfulBanner from '../components/ContentfulBanner'
 import Image from "../components/image"
 import Layout from "../components/layout"
+import ProductList from '../components/ProductsList'
 import SEO from "../components/seo"
+import { useLanguage } from '../hooks'
 
-const IndexPage = () => (
+const IndexPage = () => {
+   const language = useLanguage()
+  return (
   <Layout>
     <SEO title="Home" />
-    <h1>Hi people</h1>
-    <h2>A Change!</h2>
-    <p>Welcome to your new Gatsby site!</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link> <br />
-    <Link to="/using-typescript/">Go to "Using TypeScript"</Link>
+    
+  return <>
+    <Banner language={language}/>
+    <ContentfulBanner />
+    <Container>
+      <ProductList language={language}/>
+    </Container>
+  </>
   </Layout>
-)
+  )
+}
 
 export default IndexPage
