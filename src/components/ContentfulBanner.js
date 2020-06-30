@@ -6,6 +6,7 @@ import { BLOCKS, MARKS } from '@contentful/rich-text-types'
 import { Container, Paper } from '@material-ui/core'
 import { Just, Nothing } from 'crocks/Maybe'
 import { graphql, useStaticQuery } from 'gatsby'
+import Img from "gatsby-image"
 import { flip, path, pipe, prop, props } from 'ramda'
 import React, { useEffect, useState } from 'react'
 import renderHTML from 'react-render-html'
@@ -24,7 +25,8 @@ const options = {
       const file = path(['file', 'en-US'])(fields)
       const [url] = props(['url'])(file)
       console.log({url, title, file})
-      return <img alt={title} title={title} src={url} style={{ width: '100%' }}/>
+      return <Img fixed={node} />
+      // return <img alt={title} title={title} src={url} style={{ width: '100%' }}/>
     }
   }
   // renderText: text => text.replace('!', '?')
@@ -41,9 +43,11 @@ const test = pipe(
 )
 
 const renderContent = x => {
-  const entry = prop('contentfulBanner')
+  const entry = prop('contentfulBanner', x)
+  const headerImage = prop('headerImage', entry)
   return <Paper style={{ padding: '1rem', textAlign: 'left' }}>
-    {renderEntry(entry(x))}
+    <Img fluid={headerImage.fluid} />
+    {renderEntry(entry)}
   </Paper>
 }
 
@@ -59,13 +63,24 @@ const ContentfulBanner = () => {
     useStaticQuery(graphql`
       query {
         contentfulBanner {
-                title,
+                title
                 richText {
                   json
                 }
-        }
+                headerImage {
+                  title
+                  fluid {
+                    base64
+                    aspectRatio
+                    src
+                    srcSet
+                    srcWebp
+                    srcSetWebp
+                  }
+                }
+              }
       }
-  `)
+    `)
 
   useEffect(() => {
     setData(Just(contentfulData))
