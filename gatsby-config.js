@@ -1,3 +1,7 @@
+const spaceId = '0wm9qd6toywt'
+const contentDeliveryToken = 'YeZK36wA90IrT4WLW1a4Ap3UAWffbyEMEaX_552hJdg'
+const contentPreviewToken = '-luKhnJQT_43JPGLHlbwWDm7AH-hAHL2dA90EY9JYw4'
+
 module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
@@ -29,6 +33,13 @@ module.exports = {
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    `gatsby-plugin-offline`,
+    {
+      resolve: 'gatsby-source-contentful',
+      options: {
+        spaceId,
+        accessToken: contentDeliveryToken
+      }
+    }
   ],
 }

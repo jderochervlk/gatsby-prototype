@@ -8,6 +8,7 @@ import isDefined from 'crocks/predicates/isDefined'
 const { Just, Nothing } = Maybe
 
 const renderMaybe = renderNothing => renderJust => x => {
+  console.log(x)
   return x.map(renderJust).option(renderNothing())
 }
 

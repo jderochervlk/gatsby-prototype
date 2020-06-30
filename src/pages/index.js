@@ -1,5 +1,5 @@
-import { Container } from '@material-ui/core'
 import { Link } from "gatsby"
+import { graphql, useStaticQuery } from 'gatsby'
 import React from "react"
 
 import ContentfulBanner from '../components/ContentfulBanner'
@@ -17,3 +17,4 @@ const IndexPage = () => {
 }
 
 export default IndexPage
+ 
