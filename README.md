@@ -1,4 +1,4 @@
-[![amplifybutton](https://oneclick.amplifyapp.com/button.svg)](https://console.aws.amazon.com/amplify/home#/deploy?repo=https://github.com/username/repository)
+[![amplifybutton](https://oneclick.amplifyapp.com/button.svg)](https://console.aws.amazon.com/amplify/home#/deploy?repo=https://github.com/jderochervlk/gatsby-prototype)
 
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <p align="center">
