@@ -55,40 +55,11 @@ const renderNothing = () => <p>No content available</p>
 
 const render = renderMaybe(renderNothing)(renderContent)
 
-const ContentfulBanner = () => {
-  const [data, setData] = useState(Nothing())
-  const [error, setError] = useState()
-
-  const contentfulData = 
-    useStaticQuery(graphql`
-      query {
-        contentfulBanner {
-                title
-                richText {
-                  json
-                }
-                headerImage {
-                  title
-                  fluid {
-                    base64
-                    aspectRatio
-                    src
-                    srcSet
-                    srcWebp
-                    srcSetWebp
-                  }
-                }
-              }
-      }
-    `)
-
-  useEffect(() => {
-    setData(Just(contentfulData))
-  }, [contentfulData])
-  
+const ContentfulBanner = ({ error, data }) => {
+  console.log({data})  
   return <Container>
-    {JSON.stringify(error)}
-    {render(data)}
+    {error && JSON.stringify(error)}
+    {data && render(data)}
   </Container>
 }
 
