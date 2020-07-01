@@ -63,4 +63,5 @@ const ContentfulBanner = ({ error, data }) => {
   </Container>
 }
 
+
 export default ContentfulBanner
